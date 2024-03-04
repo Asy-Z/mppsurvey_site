@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Mentor</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        form {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+        }
+
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+    </style>
+
+</head>
+<body>
+    <form action="searchpage" method="get">
+        {% csrf_token %}
+        <h3>Enter Mentor ID: </h3>
+        <input type="text" name="Search" placeholder="">
+        <input type="submit" value="SEARCH">
+    </form>
+
+    <h2>
+
+        <table>
+            <tr>
+                <th>MENTOR ID</th>
+                <th>MENTOR NAME</th>
+                <th>ROOM NO</th>
+                <th colspan="2">EDIT</th>
+            </tr>
+            {% for x in findmentor %}
+            <tr>
+                <td>{{ x.MentorID }}</td>
+                <td>{{ x.MentorName }}</td>
+                <td>{{ x.RoomNo }}</td>
+                <td><a href="{% if x.MentorID %}{% url 'update' MentorID=x.MentorID %}{% endif %}">    UPDATE  </a></td>
+                <td><a href="{% if x.MentorID %}{% url 'delete' MentorID=x.MentorID %}{% endif %}">    DELETE  </a></td>
+            </tr>
+            {% endfor %}
+        </table>
+    
+        <select name="MentorID" id="MentorID">
+            {% for x in displaydata %}
+            <option value="MentorID">
+                {{ x.MentorID }}
+            </option>
+            {% endfor %}
+        </select>
+
+    </h2>
+</body>
+</html>

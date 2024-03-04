@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Mentor</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 20px;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        form {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        h3 {
+            color: #007BFF;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+        }
+
+        input[type="submit"] {
+            background-color: #28a745;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        a {
+            display: block;
+            margin-top: 20px;
+            text-align: center;
+            color: #007BFF;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <br><br><br>
+    <form action="updatedata/{{ updateid.MentorID }}" method="post">
+        {% csrf_token %}
+        <h3>Enter Mentor ID</h3><br>
+        <input type="text" name="mentorid" value="{{ updateid.MentorID }}" disabled>
+        <h3>Enter Mentor Name</h3><br>
+        <input type="text" name="mentorname" value="{{ updateid.MentorName }}"><br>
+        <h3>Enter Mentor Room Number</h3><br>
+        <input type="text" name="roomno" value="{{ updateid.RoomNo }}"><br>
+        <br>
+        <input type="submit" value="UPDATE">
+    </form>
+
+    <a href="{% url 'index' %}">Back to Homepage</a>
+</body>
+</html>
+

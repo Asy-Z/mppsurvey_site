@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delete Mentor</title>
+</head>
+<body>
+    <br><br><br>
+    <form action="deletedata/{{ datatobedelete.MentorID }}" method="post">
+        {% csrf_token %}
+        <h3>Enter Mentor ID</h3><br>
+        <input type="text" name="mentorid" value="{{ datatobedelete.MentorID }}" disabled>
+        <h3>Enter Mentor Name</h3><br>
+        <input type="text" name="mentorname" value="{{ datatobedelete.MentorName }}"><br>
+        <h3>Enter Mentor Room Number</h3><br>
+        <input type="text" name="roomno" value="{{ datatobedelete.RoomNo }}"><br>
+        <br>
+        <input type="submit" value="DELETE">
+    </form>
+
+<a href="{% url 'index' %}">Back to Homepage</a>
+</body>
+</html>
